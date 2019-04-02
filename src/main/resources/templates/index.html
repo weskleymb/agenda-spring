@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html
-    xmlns:th="http://www.thymeleaf.org"
-    lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,18 +14,18 @@
             <div class="col-6">
                 <fieldset>
                     <legend>Cadastro</legend>
-                    <form action="" method="post">
+                    <form th:object="${contato}" method="post">
                         <div class="form-group">
                             <label for="nome">Nome</label>
-                            <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" autocomplete="off" autofocus>
+                            <input type="text" name="nome" id="nome" th:value="*{nome}" th:field="*{nome}" class="form-control" placeholder="Nome" autocomplete="off" autofocus>
                         </div>
                         <div class="form-group">
                             <label for="fone">Fone</label>
-                            <input type="text" name="fone" id="fone" class="form-control" placeholder="Fone" autocomplete="off">
+                            <input type="text" name="fone" id="fone" th:value="*{fone}" th:field="*{fone}" class="form-control" placeholder="Fone" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="E-mail" autocomplete="off">
+                            <input type="text" name="email" id="email" th:value="*{email}" th:field="*{email}" class="form-control" placeholder="E-mail" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -44,6 +42,35 @@
                             </div>
                         </div>
                     </form>
+                </fieldset>
+            </div>
+            <div class="col-6">
+                <fieldset>
+                    <legend>Lista de Contatos</legend>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Fone</th>
+                                <th>Email</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="contato : ${contatos}">
+                                <td th:text="${contato.id}"></td>
+                                <td th:text="${contato.nome}"></td>
+                                <td th:text="${contato.fone}"></td>
+                                <td th:text="${contato.email}"></td>
+                                <td>
+                                    <a th:href="@{/editar/{id}(id=${contato.id})}" class="btn btn-success">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </fieldset>
             </div>
         </div>
