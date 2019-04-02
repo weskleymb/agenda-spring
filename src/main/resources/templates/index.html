@@ -14,7 +14,8 @@
             <div class="col-6">
                 <fieldset>
                     <legend>Cadastro</legend>
-                    <form th:object="${contato}" method="post">
+                    <form th:action="@{/}" th:object="${contato}" method="post">
+                        <input type="hidden" name="id" id="id" th:value="*{id}" th:field="*{id}">
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input type="text" name="nome" id="nome" th:value="*{nome}" th:field="*{nome}" class="form-control" placeholder="Nome" autocomplete="off" autofocus>

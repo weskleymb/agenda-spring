@@ -37,11 +37,5 @@ public class ContatoController {
 		model.addAttribute("contatos", service.buscarTodos());
 		return "index";
 	}
-	
-	@PostMapping("/editar/{id}")
-	public String save(@PathVariable Long id, Contato contato) {
-		service.salvar(contato);
-		return "redirect:/";
-	}
-	
+		
 }
