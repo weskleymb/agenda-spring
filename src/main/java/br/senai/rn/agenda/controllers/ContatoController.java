@@ -32,6 +32,12 @@ public class ContatoController {
 		return "index";
 	}
 	
+	@GetMapping("/remover/{id}")
+	public String remover(@PathVariable Long id, Model model) {
+		service.removerPorId(id);
+		return "redirect:/";
+	}
+	
 	@PostMapping
 	public String salvar(Contato contato) {
 		service.salvar(contato);
